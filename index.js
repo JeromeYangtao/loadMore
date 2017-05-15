@@ -24,6 +24,14 @@ var server = http.createServer(function(request, response) {
         var string = fs.readFileSync('./main.js')
         response.setHeader('Content-Type', 'application/javascript')
         response.end(string)
+    } else if (path === '/page1.json') {
+        var string = fs.readFileSync('./page1.json')
+        response.setHeader('Content-Type', 'application/json')
+        response.end(string)
+    } else if (path === '/page2.json') {
+        var string = fs.readFileSync('./page2.json')
+        response.setHeader('Content-Type', 'application/json')
+        response.end(string)
     } else {
         response.statusCode = 404
         response.setHeader('Content-Type', 'text/html;charset=utf-8')
