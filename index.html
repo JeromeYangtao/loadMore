@@ -1,28 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!--<link rel="stylesheet" href="/style.css">-->
+    <title>AJAX demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        ol {
+            list-style: none;
+        }
+        
+        #container img {
+            width: 150px;
+        }
+        
+        #container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+        }
+    </style>
 </head>
 
 <body>
-
-
-    <h5>你好，这是我的第一个页面</h5>
-    <button id="button">加载更多</button>
-
+    <ol id="container">
+    </ol>
+    <button id=btn>加载</button>
     <script>
-        let button = document.querySelector('#button')
-        let page = 1
-        button.addEventListener('click', function() {
-            let request = new XMLHttpRequest()
-            request.open('GET', `/page${page}.json`)
+        var page = 1
+        btn.onclick = function() {
+            var request = new XMLHttpRequest()
+            request.open('GET', '/page' + page + '.json')
             request.onload = function() {
-                page++
+                page += 1
                 let object = JSON.parse(request.responseText)
                 let hasNextPage = object.hasNextPage
                 if (!hasNextPage) {
@@ -39,15 +55,9 @@
 
             }
             request.send()
-        })
-    </script>
 
-    <!--<script>
-        function xxx() {
-            alert('我是xxx')
         }
-    </script>-->
-    <!--<script src="/main.js?callback=xxx"></script>-->
+    </script>
 </body>
 
 </html>
