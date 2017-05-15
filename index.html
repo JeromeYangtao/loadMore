@@ -36,7 +36,7 @@
         var page = 1
         btn.onclick = function() {
             var request = new XMLHttpRequest()
-            request.open('GET', `/page${page}.json`)
+            request.open('GET', `https://jeromeyangtao.github.io/loadMore/page${page}.json`)
             request.onload = function() {
                 page += 1
                 let object = JSON.parse(request.responseText)
