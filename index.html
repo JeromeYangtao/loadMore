@@ -20,7 +20,7 @@
         let page = 1
         button.addEventListener('click', function() {
             let request = new XMLHttpRequest()
-            request.open('GET', `/page{page}.json`)
+            request.open('GET', `/page${page}.json`)
             request.onload = function() {
                 page++
                 let object = JSON.parse(request.responseText)
