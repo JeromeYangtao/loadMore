@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<link rel="stylesheet" href="/style.css">-->
+</head>
+
+<body>
+
+
+    <h5>你好，这是我的第一个页面</h5>
+    <button id="button">加载更多</button>
+
+    <script>
+        let button = document.querySelector('#button')
+        let page = 1
+        button.addEventListener('click', function() {
+            let request = new XMLHttpRequest()
+            request.open('GET', `/page{page}.json`)
+            request.onload = function() {
+                page++
+                let object = JSON.parse(request.responseText)
+                let hasNextPage = object.hasNextPage
+                if (!hasNextPage) {
+                    btn.disabled = true
+                }
+                let array = object.items
+                array.forEach(function(item, index) {
+                    let li = document.createElement('li')
+                    let img = document.createElement('img')
+                    li.appendChild(img)
+                    img.src = item.url
+                    container.appendChild(li)
+                })
+
+            }
+            request.send()
+        })
+    </script>
+
+    <!--<script>
+        function xxx() {
+            alert('我是xxx')
+        }
+    </script>-->
+    <!--<script src="/main.js?callback=xxx"></script>-->
+</body>
+
+</html>
